@@ -24,9 +24,10 @@ const HeaderBar = styled.div({
     flexDirection: 'row',
     minHeight: 100,
     backgroundColor: 'white',
+    float: 'left',
   });
 
-  const Logo = styled.img({
+  const Logo = styled.svg({
     height: 60,
     width: 60,
     marginRight: 8,
