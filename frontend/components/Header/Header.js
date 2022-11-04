@@ -22,8 +22,7 @@ const HeaderBar = styled.div({
     display: 'flex',
     flex: 1,
     flexDirection: 'row',
-    minHeight: 50,
-    
+    minHeight: 100,
     backgroundColor: 'white',
   });
 
