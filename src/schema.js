@@ -1,4 +1,38 @@
-// Pre-seeded data
+const {gql} = require('apollo-server');
+const typeDefs = gql`
+
+type books{
+  id: int!
+  title: string!
+  author: author!
+  coverImage: string!
+  categories: [categories]!
+  description: string
+}
+
+type authors{
+  id: int!
+  firstName: string!
+  lastName: string!
+  books: [books]
+}
+
+type categories{
+  id: int!
+  name: string!
+  books: [books]
+}
+
+type Query{
+  allBooks: [books!]
+  allAuthors: [authors!]
+  allCategories: [categories!]
+}
+`;
+
+module.exports = typeDefs;
+
+//Pre-seeded data
 const books = [
   {
     id: '1',
