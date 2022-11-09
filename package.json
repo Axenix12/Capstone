@@ -1,0 +1,27 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "Gardner Capstone project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index"
+  },
+  "dependencies": {
+    "apollo-server": "^3.11.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axenix12/Capstone.git"
+  },
+  "author": "Gardner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axenix12/Capstone/issues"
+  },
+  "homepage": "https://github.com/Axenix12/Capstone#readme"
+}
