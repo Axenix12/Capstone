@@ -24,9 +24,9 @@ type categories{
 }
 
 type Query{
-  allBooks: [books!]
-  allAuthors: [authors!]
-  allCategories: [categories!]
+  getBooks: [books!]
+  getAuthors: [authors!]
+  getCategories: [categories!]
 }
 `;
 
