@@ -25,12 +25,13 @@ type categories{
 
 type Query{
   getBooks: [books!]
+  getBook(id: ID!): books
   getAuthors: [authors!]
   getCategories: [categories!]
 }
 `;
 
-module.exports = typeDefs;
+exports.typeDefs = typeDefs;
 
 //Pre-seeded data
 const books = [
@@ -136,3 +137,7 @@ const categories = [
     books: ['4']
   }
 ];
+
+exports.books =  books;
+exports.authors = authors;
+exports.categories =  categories;
