@@ -2,7 +2,7 @@ const {gql} = require('apollo-server');
 const typeDefs = gql`
 
 type books{
-  id: Int!
+  id: ID!
   title: String!
   author: authors!
   coverImage: String!
@@ -11,23 +11,33 @@ type books{
 }
 
 type authors{
-  id: Int!
+  id: ID!
   firstName: String!
   lastName: String!
   books: [books]
 }
 
 type categories{
-  id: Int!
+  id: ID!
   name: String!
   books: [books]
 }
 
 type Query{
   getBooks: [books!]
-  getBook(id: ID!): books
+  getBook(id: ID!): books!
   getAuthors: [authors!]
   getCategories: [categories!]
+}
+
+type Mutation{
+  addBook(
+    title: String!
+    author: String!
+    coverImage: String!
+    categories: [String]!
+    description: String
+  ): books
 }
 `;
 
