@@ -27,14 +27,13 @@ describe('Testing getBooks', () => {
           description
         }
       }
-    }
     `
 
     it('Should return all books', async () => {
     const response = await testServer.executeOperation({ query });
-    //const {list} = response.data;
+    const {books} = response.data;
 
-    expect(response.data).toBe(4);
+    expect(books.length).toBe(4);
     })
 }
 )
