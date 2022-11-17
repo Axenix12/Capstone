@@ -5,8 +5,8 @@ type books{
   id: ID!
   title: String!
   author: authors!
-  coverImage: String!
-  categories: [categories]!
+  coverImage: String
+  categories: [categories]
   description: String
 }
 
@@ -33,9 +33,9 @@ type Query{
 type Mutation{
   addBook(
     title: String!
-    author: String!
-    coverImage: String!
-    categories: [String]!
+    author: ID!
+    coverImage: String
+    categories: [ID]!
     description: String
   ): books
 }

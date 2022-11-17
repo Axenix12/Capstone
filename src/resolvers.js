@@ -3,6 +3,16 @@ const {books} = require('./schema');
 const {categories} = require('./schema');
 
 const resolvers = {
+    books: {
+        author: ({author: authorId}) => authors.find(authors => authors.id === authorId),
+        categories: ({categories: categoryIds}) => categories.filter(categories => categoryIds.includes(categories.id))
+    },
+    authors: {
+        books: ({books: bookIds}) => books.filter(books => bookIds.includes(books.id))
+    },
+    categories: {
+        books: ({books: bookIds}) => books.filter(books => bookIds.includes(books.id))
+    },
     Query: {
         getBooks: () => books,
         getAuthors: () => authors,
