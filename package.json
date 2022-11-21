@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "apollo-server": "^3.11.0",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "xo": "^0.53.1"
   },
   "devDependencies": {
     "@graphql-tools/mock": "^8.7.12",
