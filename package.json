@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon src/index",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "lint": "xo"
   },
   "dependencies": {
     "apollo-server": "^3.11.0",
