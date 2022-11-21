@@ -64,6 +64,12 @@ describe('Testing getBook', () => {
         title
         description
         coverImage
+        author {
+          id
+        }
+        categories {
+          id
+        }
       }
     }
     `
@@ -76,6 +82,8 @@ describe('Testing getBook', () => {
     expect(getBook.title).toBe('Harry Potter and the Chamber of Secrets');
     expect(getBook.coverImage).toBe('https://m.media-amazon.com/images/I/51mFoFmu0EL._AC_SY780_.jpg');
     expect(getBook.description).toBe('Harry Potter and the Chamber of Secrets is a 1998 young adult fantasy novel by J.K. Rowling, the second in the Harry Potter series. The story follows Harry’s tumultuous second year at Hogwarts School of Witchcraft and Wizardry, including an encounter with Voldemort, the wizard who killed Harry’s parents. Against this fantastic backdrop, Rowling examines such themes as death, fame, friendship, choice, and prejudice. Upon release, the novel became a worldwide bestseller and won several awards, including Children’s Book of the Year at the British Book Awards and the Nestlé Smarties Book Award; it was subsequently adapted into a 2002 film directed by Chris Columbus.');
+    expect(getBook.author.id).toBe("1");
+    expect(getBook.categories.length).toBe(2);
     })
 }
 )
