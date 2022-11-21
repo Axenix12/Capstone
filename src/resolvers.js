@@ -16,16 +16,17 @@ const resolvers = {
     Query: {
         getBooks: () => books,
         getAuthors: () => authors,
-        getCategories: () => categories
+        getCategories: () => categories,
+        getBook: (_parent, {id}) => books.find(books => books.id === id),
     },
     Mutation: {
-        addBook: (_parent, {title, authorId, coverImage, categoryIds, description}) => {
+        addBook: (_parent, {title, author, coverImage, categories, description}) => {
             const book = {
                 id: String(books.length + 1),
-                title: title,
-                author: authorId, 
+                title,
+                author: author, 
                 coverImage: coverImage,
-                categories: categoryIds,
+                categories: categories,
                 description: description,
             };
             books.push(book)
