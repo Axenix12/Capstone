@@ -5,22 +5,21 @@ const resolvers = require('../src/resolvers');
 const startServer = () => new ApolloServer({typeDefs, resolvers});
 const testServer = startServer();
 
-describe('Testing getAuthors', () => {
+describe('Testing getCategories', () => {
     const query = `
-    query GetAuthors {
-      getAuthors {
-        id
-        firstName
-        lastName
+    query GetCategories {
+        getCategories {
+          id
+          name
+        }
       }
-    }
     `
 
     it('Should return all authors', async () => {
     const response = await testServer.executeOperation({ query });
-    const {getAuthors} = await response.data;
+    const {getCategories} = await response.data;
 
-    expect(getAuthors.length).toBe(8);
+    expect(getCategories.length).toBe(3);
     })
 }
 )
