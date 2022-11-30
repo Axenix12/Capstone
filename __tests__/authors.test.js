@@ -1,11 +1,11 @@
-import {ApolloServer} from '@apollo/server';
-import {typeDefs} from '../src/schema.js';
-import {resolvers} from '../src/resolvers.js';
+import { ApolloServer } from "@apollo/server";
+import { typeDefs } from "../src/schema.js";
+import { resolvers } from "../src/resolvers.js";
 
-const startServer = () => new ApolloServer({typeDefs, resolvers});
+const startServer = () => new ApolloServer({ typeDefs, resolvers });
 const testServer = startServer();
 
-describe('Testing getAuthors', () => {
+describe("Testing getAuthors", () => {
 	const query = `
     query GetAuthors {
       getAuthors {
@@ -16,11 +16,10 @@ describe('Testing getAuthors', () => {
     }
     `;
 
-	it('Should return all authors', async () => {
-		const response = await testServer.executeOperation({query});
-		const {getAuthors} = await response.body.singleResult.data;
+	it("Should return all authors", async () => {
+		const response = await testServer.executeOperation({ query });
+		const { getAuthors } = await response.body.singleResult.data;
 
 		expect(getAuthors.length).toBe(8);
 	});
-},
-);
+});
