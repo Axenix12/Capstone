@@ -1,13 +1,23 @@
-const {ApolloServer} = require('apollo-server');
-const {typeDefs} = require('./schema');
-const resolvers = require('./resolvers');
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
+import {typeDefs} from './schema.js';
+import {resolvers} from './resolvers.js';
 
-const server = new ApolloServer({typeDefs, resolvers});
+async function startServer(){
+  const app = express();
+  const httpServer = http.createServer(app);
 
-server.listen().then(() => {
-    console.log(`
+  const server = new ApolloServer({typeDefs, resolvers, plugins: [ApolloServerPluginDrainHttpServer({httpServer})]});
+  await server.start();
+  const port = process.env.PORT || 4000;
+  await new Promise(resolve => httpServer.listen({ port }, resolve));
+  console.log(`
       🚀  Server is running!
-      🔉  Listening on port 4000
-      📭  Query at http://localhost:4000
+      🔉  Listening on port ${port}
+      📭  Query at http://localhost:${port}
     `);
-  });
+}
+  startServer();
