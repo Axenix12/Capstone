@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.95% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/21</span>
+                <span class='fraction'>13/17</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>10/12</span>
             </div>
         
             
@@ -100,19 +100,22 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,52 +139,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">const {authors} = require('./schema');
-const {books} = require('./schema');
-const {categories} = require('./schema');
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { authors, books, categories } from "./schema.js";
 &nbsp;
-const resolvers = {
-    books: {
-        author: ({author: authorId}) =&gt; authors.find(authors =&gt; authors.id === authorId),
-        categories: ({categories: categoryIds}) =&gt; categories.filter(categories =&gt; categoryIds.includes(categories.id))
-    },
-    authors: {
-        books: <span class="fstat-no" title="function not covered" >({</span>books: bookIds}) =&gt; <span class="cstat-no" title="statement not covered" >books.filter(<span class="fstat-no" title="function not covered" >bo</span>oks =&gt; <span class="cstat-no" title="statement not covered" >bookIds.includes(books.id))</span></span>
-    },
-    categories: {
-        books: <span class="fstat-no" title="function not covered" >({</span>books: bookIds}) =&gt; <span class="cstat-no" title="statement not covered" >books.filter(<span class="fstat-no" title="function not covered" >bo</span>oks =&gt; <span class="cstat-no" title="statement not covered" >bookIds.includes(books.id))</span></span>
-    },
-    Query: {
-        getBooks: () =&gt; books,
-        getAuthors: () =&gt; authors,
-        getCategories: () =&gt; categories,
-        getBook: (_parent, {id}) =&gt; books.find(books =&gt; books.id === id),
-    },
-    Mutation: {
-        addBook: (_parent, {title, author, coverImage, categories, description}) =&gt; {
-            const book = {
-                id: String(books.length + 1),
-                title,
-                author: author, 
-                coverImage: coverImage,
-                categories: categories,
-                description: description,
-            };
-            books.push(book)
-            return book;
-        }
-    }
-}
-&nbsp;
-module.exports = resolvers;</pre></td></tr></table></pre>
+export const resolvers = {
+	book: {
+		author: ({ author: authorId }) =&gt;
+			authors.find((author) =&gt; author.id === authorId),
+		categories: ({ categories: categoryIds }) =&gt;
+			categories.filter((category) =&gt; categoryIds.includes(category.id)),
+	},
+	author: {
+		books: <span class="fstat-no" title="function not covered" >({</span> book: bookIds }) =&gt;
+<span class="cstat-no" title="statement not covered" >			books.filter(<span class="fstat-no" title="function not covered" >(b</span>ook) =&gt; <span class="cstat-no" title="statement not covered" >bookIds.includes(book.id))</span>,</span>
+	},
+	category: {
+		books: <span class="fstat-no" title="function not covered" >({</span> books: bookIds }) =&gt;
+<span class="cstat-no" title="statement not covered" >			books.filter(<span class="fstat-no" title="function not covered" >(b</span>ook) =&gt; <span class="cstat-no" title="statement not covered" >bookIds.includes(book.id))</span>,</span>
+	},
+	Query: {
+		getBooks: () =&gt; books,
+		getAuthors: () =&gt; authors,
+		getCategories: () =&gt; categories,
+		getBook: (_parent, { id }) =&gt; books.find((book) =&gt; book.id === id),
+	},
+	Mutation: {
+		addBook(_parent, { title, author, coverImage, categories, description }) {
+			const book = {
+				id: String(books.length + 1),
+				title,
+				author,
+				coverImage,
+				categories,
+				description,
+			};
+			books.push(book);
+			return book;
+		},
+	},
+};
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-21T18:14:27.465Z
+                at 2022-12-07T18:29:58.530Z
             </div>
         <script src="prettify.js"></script>
         <script>

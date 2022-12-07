@@ -1,33 +1,33 @@
 import { gql } from "apollo-server-express";
 
 export const typeDefs = gql`
-	type books {
+	type book {
 		id: ID!
 		title: String!
-		author: authors!
+		author: author!
 		coverImage: String
-		categories: [categories]
+		categories: [category]
 		description: String
 	}
 
-	type authors {
+	type author {
 		id: ID!
 		firstName: String!
 		lastName: String!
-		books: [books]
+		books: [book]
 	}
 
-	type categories {
+	type category {
 		id: ID!
 		name: String!
-		books: [books]
+		books: [book]
 	}
 
 	type Query {
-		getBooks: [books!]
-		getBook(id: ID!): books!
-		getAuthors: [authors!]
-		getCategories: [categories!]
+		getBooks: [book!]
+		getBook(id: ID!): book!
+		getAuthors: [author!]
+		getCategories: [category!]
 	}
 
 	type Mutation {
@@ -37,7 +37,7 @@ export const typeDefs = gql`
 			coverImage: String
 			categories: [ID]!
 			description: String
-		): books
+		): book
 	}
 `;
 

@@ -1,25 +1,25 @@
 import { authors, books, categories } from "./schema.js";
 
 export const resolvers = {
-	books: {
+	book: {
 		author: ({ author: authorId }) =>
-			authors.find((authors) => authors.id === authorId),
+			authors.find((author) => author.id === authorId),
 		categories: ({ categories: categoryIds }) =>
-			categories.filter((categories) => categoryIds.includes(categories.id)),
+			categories.filter((category) => categoryIds.includes(category.id)),
 	},
-	authors: {
-		books: ({ books: bookIds }) =>
-			books.filter((books) => bookIds.includes(books.id)),
+	author: {
+		books: ({ book: bookIds }) =>
+			books.filter((book) => bookIds.includes(book.id)),
 	},
-	categories: {
+	category: {
 		books: ({ books: bookIds }) =>
-			books.filter((books) => bookIds.includes(books.id)),
+			books.filter((book) => bookIds.includes(book.id)),
 	},
 	Query: {
 		getBooks: () => books,
 		getAuthors: () => authors,
 		getCategories: () => categories,
-		getBook: (_parent, { id }) => books.find((books) => books.id === id),
+		getBook: (_parent, { id }) => books.find((book) => book.id === id),
 	},
 	Mutation: {
 		addBook(_parent, { title, author, coverImage, categories, description }) {
