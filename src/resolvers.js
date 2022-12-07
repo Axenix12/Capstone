@@ -8,7 +8,7 @@ export const resolvers = {
 			categories.filter((category) => categoryIds.includes(category.id)),
 	},
 	author: {
-		books: ({ book: bookIds }) =>
+		books: ({ books: bookIds }) =>
 			books.filter((book) => bookIds.includes(book.id)),
 	},
 	category: {

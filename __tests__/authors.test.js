@@ -5,8 +5,9 @@ import { resolvers } from "../src/resolvers.js";
 const startServer = () => new ApolloServer({ typeDefs, resolvers });
 const testServer = startServer();
 
-describe("Testing getAuthors", () => {
-	const query = `
+describe("Authors Test", () => {
+	describe("Testing getAuthors", () => {
+		const query = `
     query GetAuthors {
       getAuthors {
         id
@@ -16,10 +17,11 @@ describe("Testing getAuthors", () => {
     }
     `;
 
-	it("Should return all authors", async () => {
-		const response = await testServer.executeOperation({ query });
-		const { getAuthors } = await response.body.singleResult.data;
+		it("Should return all authors", async () => {
+			const response = await testServer.executeOperation({ query });
+			const { getAuthors } = await response.body.singleResult.data;
 
-		expect(getAuthors.length).toBe(8);
+			expect(getAuthors.length).toBe(8);
+		});
 	});
 });
