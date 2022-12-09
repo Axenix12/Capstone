@@ -3,8 +3,12 @@ import { typeDefs } from "../src/schema.js";
 import { resolvers } from "../src/resolvers.js";
 
 describe("Authors Test", () => {
-	const startServer = () => new ApolloServer({ typeDefs, resolvers });
-	const testServer = startServer();
+	let testServer;
+
+	beforeEach(() => {
+		const startServer = () => new ApolloServer({ typeDefs, resolvers });
+		testServer = startServer();
+	});
 
 	describe("Testing getAuthors", () => {
 		const query = `

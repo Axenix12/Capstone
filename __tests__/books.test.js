@@ -4,8 +4,12 @@ import { resolvers } from "../src/resolvers.js";
 import { authors, books, categories } from "../src/schema.js";
 
 describe("Books Tests", () => {
-	const startServer = () => new ApolloServer({ typeDefs, resolvers });
-	const testServer = startServer();
+	let testServer;
+
+	beforeEach(() => {
+		const startServer = () => new ApolloServer({ typeDefs, resolvers });
+		testServer = startServer();
+	});
 
 	describe("Testing getBooks", () => {
 		const query = `
