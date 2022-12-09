@@ -2,10 +2,10 @@ import { ApolloServer } from "@apollo/server";
 import { typeDefs } from "../src/schema.js";
 import { resolvers } from "../src/resolvers.js";
 
-const startServer = () => new ApolloServer({ typeDefs, resolvers });
-const testServer = startServer();
-
 describe("Authors Test", () => {
+	const startServer = () => new ApolloServer({ typeDefs, resolvers });
+	const testServer = startServer();
+
 	describe("Testing getAuthors", () => {
 		const query = `
     query GetAuthors {
@@ -13,6 +13,9 @@ describe("Authors Test", () => {
         id
         firstName
         lastName
+        books {
+          id
+        }
       }
     }
     `;
@@ -22,6 +25,7 @@ describe("Authors Test", () => {
 			const { getAuthors } = await response.body.singleResult.data;
 
 			expect(getAuthors.length).toBe(8);
+			expect(getAuthors[0].books.length).toBe(3);
 		});
 	});
 });
