@@ -39,6 +39,8 @@ export const typeDefs = gql`
 			categories: [ID]!
 			description: String
 		): book
+
+		addCategory(name: String!, books: [ID]): category
 	}
 `;
 

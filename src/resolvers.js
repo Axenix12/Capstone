@@ -35,5 +35,14 @@ export const resolvers = {
 			books.push(book);
 			return book;
 		},
+		addCategory(_parent, { name, books }) {
+			const category = {
+				id: String(categories.length + 1),
+				name,
+				books,
+			};
+			categories.push(category);
+			return category;
+		},
 	},
 };

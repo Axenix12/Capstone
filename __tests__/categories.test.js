@@ -31,4 +31,26 @@ describe("Categories Test", () => {
 			expect(getCategories[0].books.length).toBe(3);
 		});
 	});
+
+	describe("Testing addCategory", () => {
+		const query = `
+  mutation Mutation {
+  	addCategory(name: "jokes", books: ["1", "2"]) {
+    	books {
+      		id
+    	}
+    	id
+    	name
+  		}
+	}
+	`;
+		it("Should return all books", async () => {
+			const response = await testServer.executeOperation({ query });
+			const { addCategory } = await response.body.singleResult.data;
+
+			expect(addCategory.id).toBe("4");
+			expect(addCategory.name).toBe("jokes");
+			expect(addCategory.books.length).toBe(2);
+		});
+	});
 });

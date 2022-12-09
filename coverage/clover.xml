@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1670600914372" clover="3.2.0">
-  <project timestamp="1670600914373" name="All files">
-    <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14" elements="30" coveredelements="30" complexity="0" loc="16" ncloc="16" packages="1" files="2" classes="2"/>
+<coverage generated="1670602839538" clover="3.2.0">
+  <project timestamp="1670602839538" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="17" coveredmethods="17" elements="37" coveredelements="37" complexity="0" loc="20" ncloc="20" packages="1" files="2" classes="2"/>
     <file name="resolvers.js" path="/Users/austingardner/Developer/Capstone/src/resolvers.js">
-      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14"/>
+      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="17" coveredmethods="17"/>
       <line num="3" count="3" type="stmt"/>
       <line num="6" count="1" type="stmt"/>
       <line num="8" count="3" type="stmt"/>
       <line num="12" count="32" type="stmt"/>
-      <line num="16" count="12" type="stmt"/>
+      <line num="16" count="16" type="stmt"/>
       <line num="19" count="1" type="stmt"/>
       <line num="20" count="1" type="stmt"/>
       <line num="21" count="1" type="stmt"/>
       <line num="22" count="1" type="stmt"/>
-      <line num="26" count="1" type="stmt"/>
-      <line num="34" count="1" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
       <line num="35" count="1" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
     </file>
     <file name="schema.js" path="/Users/austingardner/Developer/Capstone/src/schema.js">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <line num="3" count="3" type="stmt"/>
-      <line num="45" count="3" type="stmt"/>
-      <line num="81" count="3" type="stmt"/>
-      <line num="131" count="3" type="stmt"/>
+      <line num="48" count="3" type="stmt"/>
+      <line num="84" count="3" type="stmt"/>
+      <line num="134" count="3" type="stmt"/>
     </file>
   </project>
 </coverage>
