@@ -48,7 +48,7 @@ describe("Books Tests", () => {
     }
   }
   `;
-		it("Should return all books", async () => {
+		it("Should add a book", async () => {
 			const response = await testServer.executeOperation({ query });
 			const { addBook } = await response.body.singleResult.data;
 
@@ -94,6 +94,43 @@ describe("Books Tests", () => {
 			);
 			expect(getBook.author.id).toBe("1");
 			expect(getBook.categories.length).toBe(2);
+		});
+	});
+
+	describe("Testing updateBook", () => {
+		const query = `
+		mutation Mutation {
+  			updateBook(
+    			id: "1"
+   				title: "Updated tilt"
+    			author: "2"
+    			categories: ["2"]
+    			coverImage: "image"
+    			description: "book"
+  				) {
+    				author {
+      					id
+    				}
+    				categories {
+      					id
+    				}
+    				id
+    				title
+    				description
+    				coverImage
+  				}
+		}`;
+
+		it("Should update the values of a book based on ID", async () => {
+			const response = await testServer.executeOperation({ query });
+			const { updateBook } = response.body.singleResult.data;
+
+			expect(updateBook.id).toBe("1");
+			expect(updateBook.title).toBe("Updated tilt");
+			expect(updateBook.author.id).toBe("2");
+			expect(updateBook.categories[0].id).toBe("2");
+			expect(updateBook.coverImage).toBe("image");
+			expect(updateBook.description).toBe("book");
 		});
 	});
 });

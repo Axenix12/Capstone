@@ -44,5 +44,21 @@ export const resolvers = {
 			categories.push(category);
 			return category;
 		},
+		updateBook(
+			_parent,
+			{ id, title, author, coverImage, categories, description }
+		) {
+			const bookLocation = books.findIndex((book) => book.id === id);
+			const book = {
+				id,
+				title,
+				author,
+				coverImage,
+				categories,
+				description,
+			};
+			books[bookLocation] = book;
+			return book;
+		},
 	},
 };

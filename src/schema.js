@@ -41,6 +41,15 @@ export const typeDefs = gql`
 		): book
 
 		addCategory(name: String!, books: [ID]): category
+
+		updateBook(
+			id: ID!
+			title: String!
+			author: ID!
+			coverImage: String
+			categories: [ID]!
+			description: String
+		): book
 	}
 `;
 

@@ -23,7 +23,7 @@ describe("Categories Test", () => {
       }
     `;
 
-		it("Should return all authors", async () => {
+		it("Should return all categories", async () => {
 			const response = await testServer.executeOperation({ query });
 			const { getCategories } = response.body.singleResult.data;
 
@@ -44,7 +44,7 @@ describe("Categories Test", () => {
   		}
 	}
 	`;
-		it("Should return all books", async () => {
+		it("Should add a category", async () => {
 			const response = await testServer.executeOperation({ query });
 			const { addCategory } = await response.body.singleResult.data;
 
