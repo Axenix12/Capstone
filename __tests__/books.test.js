@@ -33,23 +33,39 @@ describe("Books Tests", () => {
 
 	describe("Testing addBook", () => {
 		const query = `
-  mutation AddBook {
-    addBook(
-      title: "vibes"
-      author: "1"
-      categories: ["1"]
-      coverImage: "cool picture"
-      description: "fun book"
-    ) {
-      id
-      title
-      coverImage
-      description
-    }
+mutation AddBook(
+  $addBookTitle: String!
+  $addBookAuthor: ID!
+  $addBookCategories: [ID]!
+  $addBookCoverImage: String
+  $addBookDescription: String
+) {
+  addBook(
+    title: $addBookTitle
+    author: $addBookAuthor
+    categories: $addBookCategories
+    coverImage: $addBookCoverImage
+    description: $addBookDescription
+  ) {
+    id
+    title
+    coverImage
+    description
   }
+}
+
   `;
 		it("Should add a book", async () => {
-			const response = await testServer.executeOperation({ query });
+			const response = await testServer.executeOperation({
+				query,
+				variables: {
+					addBookTitle: "vibes",
+					addBookAuthor: "1",
+					addBookCategories: ["1"],
+					addBookCoverImage: "cool picture",
+					addBookDescription: "fun book",
+				},
+			});
 			const { addBook } = await response.body.singleResult.data;
 
 			expect(addBook.id).toBe("5");
@@ -99,30 +115,47 @@ describe("Books Tests", () => {
 
 	describe("Testing updateBook", () => {
 		const query = `
-		mutation Mutation {
-  			updateBook(
-    			id: "1"
-   				title: "Updated tilt"
-    			author: "2"
-    			categories: ["2"]
-    			coverImage: "image"
-    			description: "book"
-  				) {
-    				author {
-      					id
-    				}
-    				categories {
-      					id
-    				}
-    				id
-    				title
-    				description
-    				coverImage
-  				}
-		}`;
+		mutation Mutation(
+  $updateBookId: ID!
+  $updateBookTitle: String!
+  $updateBookAuthor: ID!
+  $updateBookCategories: [ID]!
+  $updateBookCoverImage: String
+  $updateBookDescription: String
+) {
+  updateBook(
+    id: $updateBookId
+    title: $updateBookTitle
+    author: $updateBookAuthor
+    categories: $updateBookCategories
+    coverImage: $updateBookCoverImage
+    description: $updateBookDescription
+  ) {
+    author {
+      id
+    }
+    categories {
+      id
+    }
+    id
+    title
+    description
+    coverImage
+  }
+}`;
 
 		it("Should update the values of a book based on ID", async () => {
-			const response = await testServer.executeOperation({ query });
+			const response = await testServer.executeOperation({
+				query,
+				variables: {
+					updateBookId: "1",
+					updateBookTitle: "Updated tilt",
+					updateBookAuthor: "2",
+					updateBookCategories: ["2"],
+					updateBookCoverImage: "image",
+					updateBookDescription: "book",
+				},
+			});
 			const { updateBook } = response.body.singleResult.data;
 
 			expect(updateBook.id).toBe("1");

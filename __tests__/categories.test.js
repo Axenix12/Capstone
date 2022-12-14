@@ -34,18 +34,24 @@ describe("Categories Test", () => {
 
 	describe("Testing addCategory", () => {
 		const query = `
-  mutation Mutation {
-  	addCategory(name: "jokes", books: ["1", "2"]) {
-    	books {
-      		id
-    	}
-    	id
-    	name
-  		}
-	}
+mutation Mutation($addCategoryName: String!, $addCategoryBooks: [ID]) {
+  addCategory(name: $addCategoryName, books: $addCategoryBooks) {
+    books {
+      id
+    }
+    id
+    name
+  }
+}
 	`;
 		it("Should add a category", async () => {
-			const response = await testServer.executeOperation({ query });
+			const response = await testServer.executeOperation({
+				query,
+				variables: {
+					addCategoryName: "jokes",
+					addCategoryBooks: ["1", "2"],
+				},
+			});
 			const { addCategory } = await response.body.singleResult.data;
 
 			expect(addCategory.id).toBe("4");
