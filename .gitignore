@@ -3,3 +3,6 @@ node_modules
 .babelrc
 jest.config.json
 .DS_Store
+coverage
+clover.xml
+coverage-final.json

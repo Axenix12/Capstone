@@ -23,12 +23,40 @@ describe("Categories Test", () => {
       }
     `;
 
-		it("Should return all authors", async () => {
+		it("Should return all categories", async () => {
 			const response = await testServer.executeOperation({ query });
 			const { getCategories } = response.body.singleResult.data;
 
 			expect(getCategories.length).toBe(3);
 			expect(getCategories[0].books.length).toBe(3);
+		});
+	});
+
+	describe("Testing addCategory", () => {
+		const query = `
+mutation Mutation($addCategoryName: String!, $addCategoryBooks: [ID]) {
+  addCategory(name: $addCategoryName, books: $addCategoryBooks) {
+    books {
+      id
+    }
+    id
+    name
+  }
+}
+	`;
+		it("Should add a category", async () => {
+			const response = await testServer.executeOperation({
+				query,
+				variables: {
+					addCategoryName: "jokes",
+					addCategoryBooks: ["1", "2"],
+				},
+			});
+			const { addCategory } = await response.body.singleResult.data;
+
+			expect(addCategory.id).toBe("4");
+			expect(addCategory.name).toBe("jokes");
+			expect(addCategory.books.length).toBe(2);
 		});
 	});
 });
