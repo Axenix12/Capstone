@@ -29,6 +29,7 @@ export const typeDefs = gql`
 		getAuthors: [author!]
 		getAuthor(id: ID!): author!
 		getCategories: [category!]
+		getCategory(id: ID!): category!
 	}
 
 	type Mutation {

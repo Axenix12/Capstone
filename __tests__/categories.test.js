@@ -59,4 +59,30 @@ mutation Mutation($addCategoryName: String!, $addCategoryBooks: [ID]) {
 			expect(addCategory.books.length).toBe(2);
 		});
 	});
+
+	describe("Testing getCategory", () => {
+		const query = `
+    query GetBook($getCategoryId: ID!) {
+      getCategory(id: $getCategoryId) {
+        id
+        name
+        books {
+          id
+        }
+      }
+    }
+    `;
+
+		it("Should return one category based on id", async () => {
+			const response = await testServer.executeOperation({
+				query,
+				variables: { getCategoryId: "1" },
+			});
+			const { getCategory } = await response.body.singleResult.data;
+
+			expect(getCategory.id).toBe("1");
+			expect(getCategory.name).toBe("Fantasy");
+			expect(getCategory.books.length).toBe(3);
+		});
+	});
 });

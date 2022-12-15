@@ -21,6 +21,8 @@ export const resolvers = {
 		getCategories: () => categories,
 		getBook: (_parent, { id }) => books.find((book) => book.id === id),
 		getAuthor: (_parent, { id }) => authors.find((author) => author.id === id),
+		getCategory: (_parent, { id }) =>
+			categories.find((category) => category.id === id),
 	},
 	Mutation: {
 		addBook(_parent, { title, author, coverImage, categories, description }) {
