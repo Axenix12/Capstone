@@ -1,7 +1,9 @@
 import http from 'http';
 import process from 'process';
 import { ApolloServer } from '@apollo/server';
+// eslint-disable-next-line n/file-extension-in-import
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+// eslint-disable-next-line n/file-extension-in-import
 import { expressMiddleware } from '@apollo/server/express4';
 import express from 'express';
 import cors from 'cors';
