@@ -8,8 +8,7 @@
     "start": "nodemon src/index",
     "test": "jest",
     "coverage": "jest --coverage",
-    "lint": "xo",
-    "lintfix": "xo --fix"
+    "lint": "xo"
   },
   "dependencies": {
     "@apollo/server": "^4.2.2",
